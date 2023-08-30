@@ -36,6 +36,7 @@ def new_controller():
     Crea una instancia del modelo
     """
     #TODO: Llamar la función del modelo que crea las estructuras de datos
+    model.new_data_structs()
     pass
 
 
@@ -46,6 +47,7 @@ def load_data(control, filename):
     Carga los datos del reto
     """
     # TODO: Realizar la carga de datos
+    
     pass
 
 
