@@ -28,6 +28,7 @@ from DISClib.ADT import stack as st
 from DISClib.ADT import queue as qu
 assert cf
 import traceback
+from tabulate import tabulate 
 
 """
 La vista se encarga de la interacción con el usuario
@@ -37,13 +38,15 @@ operación solicitada
 """
 
 
-def new_controller():
+def new_controller(list_type):
     """
         Se crea una instancia del controlador
     """
     #TODO: Llamar la función del controlador donde se crean las estructuras de datos
-    controller.new_controller()
-    pass
+    control = controller.new_controller(list_type)
+    return control
+    
+    
 
 
 def print_menu():

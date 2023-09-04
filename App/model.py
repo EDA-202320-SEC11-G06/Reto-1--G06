@@ -44,13 +44,17 @@ dos listas, una para los videos, otra para las categorias de los mismos.
 # Construccion de modelos
 
 
-def new_data_structs():
+def new_data_structs(list_type):
     """
     Inicializa las estructuras de datos del modelo. Las crea de
     manera vacía para posteriormente almacenar la información.
     """
     #TODO: Inicializar las estructuras de datos
-    pass
+    data_structs = {"data":None}
+    
+    data_structs["data"] = lt.newList(list_type)
+    
+    return data_structs
 
 
 # Funciones para agregar informacion al modelo

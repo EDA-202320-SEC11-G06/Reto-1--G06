@@ -31,13 +31,14 @@ El controlador se encarga de mediar entre la vista y el modelo.
 """
 
 
-def new_controller():
+def new_controller(list_type):
     """
     Crea una instancia del modelo
     """
     #TODO: Llamar la función del modelo que crea las estructuras de datos
-    model.new_data_structs()
-    pass
+    control = {"model":None}
+    control["model"] = model.new_data_structs(list_type)
+    return control
 
 
 # Funciones para la carga de datos
