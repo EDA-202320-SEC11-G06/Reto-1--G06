@@ -43,13 +43,22 @@ def new_controller(list_type):
 
 # Funciones para la carga de datos
 
-def load_data(control, filename):
+def load_data(control, filename,sort_type):
     """
     Carga los datos del reto
     """
     # TODO: Realizar la carga de datos
     
-    pass
+    catalog = control['model']
+    contentfile = cf.data_dir + filename
+    input_file = csv.DictReader(open(contentfile, encoding = 'utf-8'))
+    for content in input_file:
+        model.add_data(catalog,content)
+        
+    delta_t , sorted_file = sort(catalog,sort_type)
+    size = int(sorted_file["size"])
+    control["model"] = sorted_file
+    return size, model.first_and_last3(sorted_file), delta_t
 
 
 # Funciones de ordenamiento
