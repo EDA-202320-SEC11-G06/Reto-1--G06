@@ -68,22 +68,42 @@ def load_data(control):
     Carga los datos
     """
     #TODO: Realizar la carga de datos
-    pass
-
-
+    try:
+        print("Cargando información de los archivos ....")
+        req_1, req_2, req_3, req_4, req_5, req_6, req_7, req_8 = controller.load_data(control)
+        print("Carga de datos completada.")
+        return req_1, req_2, req_3, req_4, req_5, req_6, req_7, req_8
+    except Exception as e:
+        print("Error al cargar los datos:", str(e))
+        return None
+    
 def print_data(control, id):
     """
         Función que imprime un dato dado su ID
     """
     #TODO: Realizar la función para imprimir un elemento
-    pass
+     elemento = controller.buscar_elemento_por_id(control, id)
+    
+    if elemento:
+        # Imprime los detalles del elemento
+        print("Detalles del elemento con ID", id)
+        print("Nombre:", elemento["nombre"])
+        print("Descripción:", elemento["descripcion"])
+        # Agrega aquí más detalles según la estructura de tu elemento
+    else:
+        print("Elemento con ID", id, "no encontrado")
 
 def print_req_1(control):
     """
         Función que imprime la solución del Requerimiento 1 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 1
-    pass
+    result = controller.get_req_1_results(control)
+    if result:
+        print("Resultado del Requerimiento 1:")
+        # Imprime aquí el resultado del requerimiento 1 utilizando el resultado obtenido
+    else:
+        print("No se encontró el resultado del Requerimiento")
 
 
 def print_req_2(control):
@@ -91,7 +111,12 @@ def print_req_2(control):
         Función que imprime la solución del Requerimiento 2 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 2
-    pass
+    if result:
+        print("Resultado del Requerimiento 1:")
+        # Imprime aquí el resultado del requerimiento 1 utilizando el resultado obtenido
+    else:
+        print("No se encontró el resultado del Requerimiento")
+
 
 
 def print_req_3(control):
@@ -99,7 +124,12 @@ def print_req_3(control):
         Función que imprime la solución del Requerimiento 3 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 3
-    pass
+    if result:
+        print("Resultado del Requerimiento 1:")
+        # Imprime aquí el resultado del requerimiento 1 utilizando el resultado obtenido
+    else:
+        print("No se encontró el resultado del Requerimiento")
+
 
 
 def print_req_4(control):
@@ -107,7 +137,12 @@ def print_req_4(control):
         Función que imprime la solución del Requerimiento 4 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 4
-    pass
+    if result:
+        print("Resultado del Requerimiento 1:")
+        # Imprime aquí el resultado del requerimiento 1 utilizando el resultado obtenido
+    else:
+        print("No se encontró el resultado del Requerimiento")
+
 
 
 def print_req_5(control):
@@ -115,7 +150,12 @@ def print_req_5(control):
         Función que imprime la solución del Requerimiento 5 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 5
-    pass
+    if result:
+        print("Resultado del Requerimiento 1:")
+        # Imprime aquí el resultado del requerimiento 1 utilizando el resultado obtenido
+    else:
+        print("No se encontró el resultado del Requerimiento")
+
 
 
 def print_req_6(control):
@@ -123,7 +163,12 @@ def print_req_6(control):
         Función que imprime la solución del Requerimiento 6 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 6
-    pass
+    if result:
+        print("Resultado del Requerimiento 1:")
+        # Imprime aquí el resultado del requerimiento 1 utilizando el resultado obtenido
+    else:
+        print("No se encontró el resultado del Requerimiento")
+
 
 
 def print_req_7(control):
@@ -131,7 +176,12 @@ def print_req_7(control):
         Función que imprime la solución del Requerimiento 7 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 7
-    pass
+    if result:
+        print("Resultado del Requerimiento 1:")
+        # Imprime aquí el resultado del requerimiento 1 utilizando el resultado obtenido
+    else:
+        print("No se encontró el resultado del Requerimiento")
+
 
 
 def print_req_8(control):
@@ -139,7 +189,12 @@ def print_req_8(control):
         Función que imprime la solución del Requerimiento 8 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 8
-    pass
+    if result:
+        print("Resultado del Requerimiento 1:")
+        # Imprime aquí el resultado del requerimiento 1 utilizando el resultado obtenido
+    else:
+        print("No se encontró el resultado del Requerimiento")
+
 
 
 # Se crea el controlador asociado a la vista
