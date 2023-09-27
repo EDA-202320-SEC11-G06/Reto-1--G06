@@ -83,32 +83,59 @@ def print_data(control, id):
     else:
         print("Elemento con ID", id, "no encontrado")
 
+
 def print_results(results):
-    tamaño= lt.size(results)
-    print("cantidad de resultados:", tamaño)
-    print= lt.sublist(results, 0, 4)
+    tamaño = lt.size(results)  # Obtener el tamaño de la lista de resultados
+    print("Cantidad de resultados:", tamaño)  # Imprimir la cantidad de resultados
+    # y agregar los primeros 4 elementos de 'results' a esta lista
+    # Nota: Cambiado 'print' a 'print_list' para evitar confusión con la función 'print'
+    print_list = lt.subList(results, 0, 4)
+
+    # Agregar los últimos 3 elementos de 'results' a 'print_list'
     for i in range(3):
-        ot= lt.getElement(results, tamaño-4+i)
-        lt.addLast(print, ot)
-    print(tabulate(lt.iterator(imp)))
+        ot = lt.getElement(results, tamaño - 4 + i)
+        lt.addLast(print_list, ot)
+
+    # Imprimir la lista 'print_list' utilizando la función 'tabulate'
+    tabulated_results = tabulate(lt.iterator(print_list))
+    print(tabulated_results)
 
 def print_results(goalscores):
-    tamaño= lt.size(goalscores)
-    print("cantidad de goalscores:", tamaño)
-    print= lt.sublist(goalscores, 0, 4)
+    tamaño = lt.size(goalscores)  # Obtener el tamaño de la lista de resultados
+    print("Cantidad de resultados:", tamaño)  # Imprimir la cantidad de resultados
+
+    # Crear una lista llamada 'print' (ojo, no se debe usar 'print' como nombre de variable)
+    # y agregar los primeros 4 elementos de 'results' a esta lista
+    # Nota: Cambiado 'print' a 'print_list' para evitar confusión con la función 'print'
+    print_list = lt.subList(goalscores, 0, 4)
+
+    # Agregar los últimos 3 elementos de 'results' a 'print_list'
     for i in range(3):
-        ot= lt.getElement(goalscores, tamaño-4+i)
-        lt.addLast(print, ot)
-    print(tabulate(lt.iterator(imp)))
+        ot = lt.getElement(goalscores, tamaño - 4 + i)
+        lt.addLast(print_list, ot)
+
+    # Imprimir la lista 'print_list' utilizando la función 'tabulate'
+    tabulated_goalscores = tabulate(lt.iterator(print_list))
+    print(tabulated_goalscores)
 
 def print_results(shootouts):
-    tamaño= lt.size(shootouts)
-    print("cantidad de shootouts:", tamaño)
-    print= lt.sublist(shootouts, 0, 4)
+    tamaño = lt.size(shootouts)  # Obtener el tamaño de la lista de resultados
+    print("Cantidad de resultados:", tamaño)  # Imprimir la cantidad de resultados
+
+    # Crear una lista llamada 'print' (ojo, no se debe usar 'print' como nombre de variable)
+    # y agregar los primeros 4 elementos de 'results' a esta lista
+    # Nota: Cambiado 'print' a 'print_list' para evitar confusión con la función 'print'
+    print_list = lt.sublist(shootouts, 0, 4)
+
+    # Agregar los últimos 3 elementos de 'results' a 'print_list'
     for i in range(3):
-        ot= lt.getElement(shootouts, tamaño-4+i)
-        lt.addLast(print, ot)
-    print(tabulate(lt.iterator(imp)))
+        ot = lt.getElement(shootouts, tamaño - 4 + i)
+        lt.addLast(print_list, ot)
+
+    # Imprimir la lista 'print_list' utilizando la función 'tabulate'
+    tabulated_results = tabulate(lt.iterator(print_list))
+    print(tabulated_results)
+
 
 def mini_diccionario_tabulable(answer,filtros):
     
@@ -126,6 +153,7 @@ def lista_tabulable_para_6(answer,filtros):
             new_list.append([llave,answer[llave]])
 
     return new_list
+
 
 def print_req_1(control):
     """

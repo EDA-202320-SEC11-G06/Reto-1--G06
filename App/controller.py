@@ -105,6 +105,7 @@ def req_3(control):
     return dato, delta_t
 
 
+
 def req_6(control):
     """
     Retorna el resultado del requerimiento 6
