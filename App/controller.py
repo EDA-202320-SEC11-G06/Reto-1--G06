@@ -43,21 +43,23 @@ def new_controller(list_type):
 
 # Funciones para la carga de datos
 
-def load_data(control, filename,sort_type):
+def load_data(control, filename):
     """
     Carga los datos del reto
     """
     # TODO: Realizar la carga de datos
-    
+
     catalog = control['model']
     contentfile = cf.data_dir + filename
-    input_file = csv.DictReader(open(contentfile, encoding = 'utf-8'))
+    input_file = csv.DictReader(open(contentfile, encoding='utf-8'))
+    
     for content in input_file:
-        model.add_data(catalog,content)
+        model.add_data(catalog, content)
         
-    delta_t , sorted_file = sort(catalog,sort_type)
+    delta_t, sorted_file = sort(catalog)
     size = int(sorted_file["size"])
     control["model"] = sorted_file
+    
     return size, model.first_and_last3(sorted_file), delta_t
 
 
@@ -68,7 +70,7 @@ def sort(control):
     Ordena los datos del modelo
     """
     #TODO: Llamar la función del modelo para ordenar los datos
-    pass
+    return model.sort(control["model"])
 
 
 # Funciones de consulta sobre el catálogo
@@ -78,15 +80,18 @@ def get_data(control, id):
     Retorna un dato por su ID.
     """
     #TODO: Llamar la función del modelo para obtener un dato
-    pass
-
-
+    data = model.get_data(control["model"], id)
+    return data
 def req_1(control):
     """
     Retorna el resultado del requerimiento 1
     """
     # TODO: Modificar el requerimiento 1
-    pass
+    dato = model.req_1(control, anio, cod)
+    start_time = get_time()
+    end_time = get_time()
+    delta_t = delta_time(start_time, end_time)
+    return dato, delta_t
 
 
 def req_2(control):
@@ -94,7 +99,11 @@ def req_2(control):
     Retorna el resultado del requerimiento 2
     """
     # TODO: Modificar el requerimiento 2
-    pass
+    dato = model.req_2(control, anio, cod)
+    start_time = get_time()
+    end_time = get_time()
+    delta_t = delta_time(start_time, end_time)
+    return dato, delta_t
 
 
 def req_3(control):
@@ -102,46 +111,22 @@ def req_3(control):
     Retorna el resultado del requerimiento 3
     """
     # TODO: Modificar el requerimiento 3
-    pass
-
-
-def req_4(control):
-    """
-    Retorna el resultado del requerimiento 4
-    """
-    # TODO: Modificar el requerimiento 4
-    pass
-
-
-def req_5(control):
-    """
-    Retorna el resultado del requerimiento 5
-    """
-    # TODO: Modificar el requerimiento 5
-    pass
+    dato = model.req_3(control, anio, cod)
+    start_time = get_time()
+    end_time = get_time()
+    delta_t = delta_time(start_time, end_time)
+    return dato, delta_t
 
 def req_6(control):
     """
     Retorna el resultado del requerimiento 6
     """
     # TODO: Modificar el requerimiento 6
-    pass
-
-
-def req_7(control):
-    """
-    Retorna el resultado del requerimiento 7
-    """
-    # TODO: Modificar el requerimiento 7
-    pass
-
-
-def req_8(control):
-    """
-    Retorna el resultado del requerimiento 8
-    """
-    # TODO: Modificar el requerimiento 8
-    pass
+    dato = model.req_1(control, anio, cod)
+    start_time = get_time()
+    end_time = get_time()
+    delta_t = delta_time(start_time, end_time)
+    return dato, delta_t
 
 
 # Funciones para medir tiempos de ejecucion
