@@ -34,6 +34,7 @@ from DISClib.Algorithms.Sorting import insertionsort as ins
 from DISClib.Algorithms.Sorting import selectionsort as se
 from DISClib.Algorithms.Sorting import mergesort as merg
 from DISClib.Algorithms.Sorting import quicksort as quk
+from tabulate import tabulate
 from datetime import datetime 
 assert cf
 
@@ -51,10 +52,10 @@ def new_data_structs(list_type):
     manera vacía para posteriormente almacenar la información.
     """
     #TODO: Inicializar las estructuras de datos
-    data_structs = {"data":None, "data1results":None, "data_2":None}
-    data_structs["data"] = lt.newList(list_type)
-    data_structs["data1results"] = lt.newList(list_type)
-    data_structs["data2"] = lt.newList(list_type)
+    data_structs = {"resultados":None, "goles":None, "penaltis":None}
+    data_structs["resultados"] = lt.newList(list_type)
+    data_structs["goles"] = lt.newList(list_type)
+    data_structs["penaltis"] = lt.newList(list_type)
     
     return data_structs
 
@@ -66,7 +67,8 @@ def add_data(data_structs, data):
     Función para agregar nuevos elementos a la lista
     """
     #TODO: Crear la función para agregar elementos a una lista
-    lt.addLast(data_structs["data1results"],data)
+    d= new_data(id, data)
+    lt.addLast(data_structs["data1results"],d)
     return data_structs
 
 
@@ -91,6 +93,7 @@ def get_data(data_structs, id):
     Retorna un dato a partir de su ID
     """
     #TODO: Crear la función para obtener un dato de una lista
+    
     return lt.getElement(data_structs["data"], id)
 
 
@@ -102,13 +105,14 @@ def data_size(data_structs):
     return lt.size(data_structs["data"])
 
 
-def req_1(dN, equipo, condicion, listaPartidos):
+def req_1(N, partido, condicion):
     """
     Función que soluciona el requerimiento 1
     """
     # TODO: Realizar el requerimiento 1
     # Filtrar la lista de partidos según la condición
-    partidosFiltrados = [partido for partido in listaPartidos if condicion in partido['condicion']]
+    data_structs1= data_structs["resultados"]
+    partidosFiltrados = [partido for partido in data_structs1  if condicion in partido['condicion']]
 
     # Ordenar los partidos cronológicamente (del más reciente al más antiguo)
     partidosFiltrados.sort(key=lambda partido: partido['fecha'], reverse=True)
@@ -143,7 +147,7 @@ def req_1(dN, equipo, condicion, listaPartidos):
 
 
 
-def req_2(nombre_jugador, N, partidos):
+def req_2(jugador, N, listaPartidos):
     """
     Función que soluciona el requerimiento 2
     """
@@ -176,22 +180,17 @@ def req_2(nombre_jugador, N, partidos):
     return respuesta
 
 
-def req_3(data_structs):
-    """
-    Función que soluciona el requerimiento 3
-    """
-    # TODO: Realizar el requerimiento 3
-    def req_3(nombre_equipo, fecha_inicial, fecha_final):
+def req_3(nombre_equipo, fecha_inicial, fecha_final):
      """
      Función que consulta los partidos disputados por un equipo durante un período específico.
      """
     # Inicializar listas para almacenar los partidos
-    partidos_totales = []
-    partidos_local = []
-    partidos_visitante = []
+     partidos_totales = []
+     partidos_local = []
+     partidos_visitante = []
 
     # Recorrer la lista de partidos y filtrar los que cumplen con el período y el equipo
-    for partido in listaPartidos:
+     for partido in data_structs["resultados"]:
         fecha_partido = partido.get("fecha", "")
         equipo_local = partido.get("equipo_local", "")
         equipo_visitante = partido.get("equipo_visitante", "")
@@ -209,19 +208,37 @@ def req_3(data_structs):
                     partidos_visitante.append(partido)
 
     # Ordenar los partidos por fecha (del más reciente al más antiguo)
-    partidos_totales.sort(key=lambda partido: partido["fecha"], reverse=True)
+     partidos_totales.sort(key=lambda partido: partido["fecha"], reverse=True)
 
     # Preparar la respuesta
-    respuesta = {
+     respuesta = {
         "total_partidos": len(partidos_totales),
         "total_local": len(partidos_local),
         "total_visitante": len(partidos_visitante),
         "partidos": partidos_totales
     }
 
-    return respuesta
+     return respuesta
 
-#Completar con calculos necesario 
+def req_4(torneo, fechainicial, fechafinal):
+    #inicializar listas para almacenar los datos
+    total_partidos = []
+    total_paises = []
+    total_ciudades = []
+    total_partidopenal = []
+    #recorrer la lista de partidos y filtrar los que cumplen con el periodo de tiempo
+    for partido in listapartidos:
+        fecha_partido = partido.get("fecha","")
+        pais = partido.get("pais", "")
+        ciudad = partido.get("ciudad", "")
+        if fechainicial <= fecha_partido and fechafinal >= fecha_partido:
+            total_partidos.append(partido)
+        if pais not in total_paises:
+            total_paises.append(pais)
+        if ciudad not in total_ciudades:
+            total_ciudades.append(ciudad)
+
+#Completar con calculos 
 def req_6(data_structs):
     """
     Función que soluciona el requerimiento 6
@@ -276,7 +293,7 @@ def req_6(data_structs):
 
 # Funciones utilizadas para comparar elementos dentro de una lista
 
-def compare(registerA, registerB):
+def compare_results(registerA, registerB):
     """
     Función encargada de comparar dos datos
     """
@@ -291,11 +308,26 @@ def compare(registerA, registerB):
     else:
         return dateA > dateB
 
+def compare_goalscores(registerA, registerB):
+    """
+    Función encargada de comparar dos datos
+    """
+    #TODO: Crear función comparadora de la lista
+    dateA= "Objeto Date"
+    dateB= "Objeto Date"
+    if dateA == dateB:
+       if registerA['home_score']== registerB['home_score']:
+           return int(registerA['minute'])> int(registerB['minute'])
+       else:
+           return int(registerA['home_socre'])>int(registerB['home_score'])
+    else:
+        return dateA > dateB
+
 # Funciones de ordenamiento
 
 
 def sort_criteria(data_1, data_2):
-    """sortCriteria criterio de ordenamiento para las funciones de ordenamiento
+    """sortCriteria criterio de ordenamiento para las funciones de ordenamiento para results 
 
     Args:
         data1 (_type_): _description_
@@ -325,7 +357,9 @@ def sort(data_structs):
     Función encargada de ordenar la lista con los datos
     """
     #TODO: Crear función de ordenamiento
-    list_1=data_structs["data2results"]
+    list_1=data_structs["resultados"]
 
     return sa.sort(list_1,sort_criteria)
+
+
    

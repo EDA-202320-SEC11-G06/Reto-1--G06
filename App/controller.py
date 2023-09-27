@@ -48,30 +48,17 @@ def load_data(control, filename):
     Carga los datos del reto
     """
     # TODO: Realizar la carga de datos
-
+    start_time = get_time()
     catalog = control['model']
     contentfile = cf.data_dir + filename
     input_file = csv.DictReader(open(contentfile, encoding='utf-8'))
     
     for content in input_file:
-        model.add_data(catalog, content)
-        
-    delta_t, sorted_file = sort(catalog)
-    size = int(sorted_file["size"])
-    control["model"] = sorted_file
+        datos= model.add_data(catalog, content)
+    model.sort(datos["data"])   
+    delta_t = sort(catalog)
     
-    return size, model.first_and_last3(sorted_file), delta_t
-
-
-# Funciones de ordenamiento
-
-def sort(control):
-    """
-    Ordena los datos del modelo
-    """
-    #TODO: Llamar la función del modelo para ordenar los datos
-    return model.sort(control["model"])
-
+    return  model.sort_criteria(catalog),delta_t
 
 # Funciones de consulta sobre el catálogo
 
@@ -116,6 +103,7 @@ def req_3(control):
     end_time = get_time()
     delta_t = delta_time(start_time, end_time)
     return dato, delta_t
+
 
 def req_6(control):
     """

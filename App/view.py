@@ -61,55 +61,11 @@ def print_menu():
     print("0- Salir")
 
 
-def load_data(control, filename):
+def load_data(control, results-utf8.csv):
     """
     Carga los datos
     """
-    return controller.load_data(control, filename)
-
-def get_value(hash,key):
-    return controller.get_value(hash,key)
-
-def diccionario_tabulable(lista,filtros):
-    
-    new_dic = {}
-    
-    for dato in lt.iterator(lista):
-        
-        for llave in dato:
-            if llave in filtros:
-    
-                if new_dic.get(llave,"no") == "no":
-                    new_dic[llave] = [dato[llave]]
-                else:
-                    new_dic[llave].append(dato[llave])
-    
-    return new_dic
-    
-    
-def lista_primeros_y_utlimos_3(lista):
-        
-    size = lt.size(lista)
-    new_data = lt.newList("ARRAY_LIST")
-     
-    if size > 6:
-        #primeros ordenados
-        i = 1
-        while i <= 3:
-            elemento = lt.getElement(lista,i)
-            lt.addLast(new_data, elemento)
-            i += 1
-        
-        #ultimos ordenados 
-        i = size - 2
-        while i <= size:
-            elemento = lt.getElement(lista, i)
-            lt.addLast(new_data,elemento)
-            i += 1
-    else:
-        new_data = lista
-    
-    return new_data
+    data = control.read_data()
  
 def print_data(control, id):
     """
@@ -170,15 +126,6 @@ def lista_tabulable_para_6(answer,filtros):
             new_list.append([llave,answer[llave]])
 
     return new_list
-
-
-def print_req_1(control):
-    """
-        Función que imprime la solución del Requerimiento 1 en consola
-    """
-    # TODO: Imprimir el resultado del requerimiento 1
-    import controller
-import model
 
 def print_req_1(control):
     """
